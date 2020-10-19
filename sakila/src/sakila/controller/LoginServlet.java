@@ -20,7 +20,7 @@ public class LoginServlet extends HttpServlet {
 			response.sendRedirect(request.getContextPath() + "/auth/IndexServlet");
 			return;
 		} 
-		request.getRequestDispatcher("WEB-INF/login.jsp").forward(request, response);
+		request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);
 	}
 	// 로그인 액션으로 이동
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
