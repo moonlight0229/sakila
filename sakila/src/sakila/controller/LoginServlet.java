@@ -10,8 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import sakila.service.StatsService;
+import sakila.vo.Stats;
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
+	private StatsService statsService;
 	
 	// 로그인 폼으로 이동
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -19,8 +23,11 @@ public class LoginServlet extends HttpServlet {
 		if(session.getAttribute("loginStaff") != null) {
 			response.sendRedirect(request.getContextPath() + "/auth/IndexServlet");
 			return;
-		} 
-		request.getRequestDispatcher("WEB-INF/views/login.jsp").forward(request, response);
+		}
+		statsService = new StatsService();
+		Stats stats = statsService.getStats();
+		
+		request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
 	}
 	// 로그인 액션으로 이동
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
