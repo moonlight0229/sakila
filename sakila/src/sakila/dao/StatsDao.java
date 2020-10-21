@@ -8,14 +8,14 @@ import sakila.query.StatsQuery;
 import sakila.vo.Stats;
 
 public class StatsDao {
-	// paramStats의 날짜를 받아와 그 날에 접속자가 있었는지 판별하는 메소드
-	// Stats VO에 접속자가 있으면 그 날의 접속자 수를 반환, 없으면 null을 반환함 
-	public Stats selectStatsOne(Connection conn, Stats paramStats) throws Exception {
+	// paramStats의 날짜를 박아와 방문자가 있었는지 확인하는 메소드
+	// 있으면 날짜와 방문자 수를 Stats vo로 반환, 없으면 null을 반환
+	public Stats selectDayStats(Connection conn, Stats paramStats) throws Exception {
 		Stats returnStats = null;
 		
-		PreparedStatement stmt = conn.prepareStatement(StatsQuery.SELECT_STATS_ONE);
+		PreparedStatement stmt = conn.prepareStatement(StatsQuery.SELECT_DAY_STATS);
 		stmt.setString(1, paramStats.getDay());
-		System.out.println("debug : stmt=" + stmt); // 디버그
+		System.out.println("StatsDao/selectDayStats/debug : stmt=" + stmt); // 디버그
 		
 		ResultSet rs = stmt.executeQuery();
 		if(rs.next()) {
@@ -23,33 +23,50 @@ public class StatsDao {
 			returnStats.setDay(rs.getString("day"));
 			returnStats.setCnt(rs.getLong("cnt"));
 		}
-		System.out.println("debug : returnStats=" + returnStats); // 디버그
+		System.out.println("StatsDao/selectDayStats/debug : returnStats=" + returnStats); // 디버그
 		
 		return returnStats;
 	}
 	
-	// 총 방문자 수를 출력하는 메소드
-	public long selectStatsTotal(Connection conn) throws Exception {
-		long totalCnt = 0;
-		PreparedStatement stmt = conn.prepareStatement(StatsQuery.SELECT_STATS_TOTAL);
-		ResultSet rs = stmt.executeQuery();
-		System.out.println("debug : stmt=" + stmt); // 디버그
+	// 총 방문자 수를 증가시키는 메소드
+	public Stats selectTotalStats(Connection conn) throws Exception {
+		Stats returnStats = null;
 		
+		PreparedStatement stmt = conn.prepareStatement(StatsQuery.SELECT_TOTAL_STATS);
+		System.out.println("StatsDao/selectTotalStats/debug : stmt=" + stmt); // 디버그
+		
+		ResultSet rs = stmt.executeQuery();		
 		if(rs.next()) {
-			totalCnt = rs.getLong("sum(cnt)");
+			returnStats = new Stats();
+			returnStats.setCnt(rs.getLong("SUM(cnt)"));
 		}
-		System.out.println("debug : totalCnt=" + totalCnt); // 디버그
+		System.out.println("StatsDao/selectTotalStats/debug : returnStats=" + returnStats); // 디버그
 		
-		return totalCnt;
+		return returnStats;
 	}
 	
-	// 오늘 날짜가 없으므로 오늘 날짜를 테이블에 새로 입력하고 cnt를 시작(1로 시작)
-	public void insertStats(Connection conn, Stats paramStats) throws Exception {
-		//INSERT_STATS
+	// paramStats으로 받아온 오늘 날짜가 없으므로 오늘 날짜를 테이블에 새로 입력하고 방문자 수 1부터 시작(cnt를 1부터 시작)하는 메소드
+	public void insertStatsStart(Connection conn, Stats paramStats) throws Exception {
+		System.out.println("StatsDao/insertStatsStart/debug : paramStats=" + paramStats); // 디버그
+		
+		PreparedStatement stmt = conn.prepareStatement(StatsQuery.INSERT_STATS_START);
+		stmt.setString(1, paramStats.getDay());
+		System.out.println("StatsDao/insertStatsStart/debug : stmt=" + stmt); // 디버그
+		
+		int updatedRow = stmt.executeUpdate();
+		System.out.println("StatsDao/insertStatsStart/debug : updatedRow=" + updatedRow); // 디버그
 	}
 	
-	// 오늘 날짜가 이미 있으므로 cnt만 증가
-	public void updateStatsPlusOne(Connection conn, Stats paramStats) throws Exception {
-		//UPDATE_STATS
+	// paramStats으로 받아온 오늘 날짜가 이미 있으므로 방문자 수 1 증가(cnt 증가)하는 메소드
+	public void updateStatsAdd(Connection conn, Stats paramStats) throws Exception {
+		System.out.println("StatsDao/updateStatsAdd/debug : paramStats=" + paramStats); // 디버그
+		
+		PreparedStatement stmt = conn.prepareStatement(StatsQuery.UPDATE_STATS_ADD);
+		stmt.setString(1, paramStats.getDay());
+		System.out.println("StatsDao/updateStatsAdd/debug : stmt=" + stmt); // 디버그
+		
+		int updatedRow = stmt.executeUpdate();
+		System.out.println("StatsDao/updateStatsAdd/debug : updatedRow=" + updatedRow); // 디버그
+		
 	}
 }

@@ -10,9 +10,9 @@ public class DBUtil {
 		final String URL = "jdbc:mariadb://localhost:3306/sakila";
 		final String USER = "root";
 		final String PASSWORD = "java1004";
-		System.out.println("debug : URL=" + URL); // 디버그
-		System.out.println("debug : USER=" + USER); // 디버그
-		System.out.println("debug : PASSWORD=" + PASSWORD); // 디버그
+		System.out.println("DBUtil/getConnection/debug : URL=" + URL); // 디버그
+		System.out.println("DBUtil/getConnection/debug : USER=" + USER); // 디버그
+		System.out.println("DBUtil/getConnection/debug : PASSWORD=" + PASSWORD); // 디버그
 
 		Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
 		conn.setAutoCommit(false);

@@ -18,6 +18,6 @@ public class Stats {
 	
 	@Override
 	public String toString() {
-		return "Stats [day=" + day + ",count=" + cnt + "]"; 
+		return "Stats [day=" + day + ", cnt=" + cnt + "]"; 
 	}
 }

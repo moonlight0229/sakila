@@ -9,10 +9,10 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 
-@WebFilter("/*") // 모든 요청을 가로챈다
+@WebFilter("/*") // 들어오는 모든 요청에 대해서 request의 캐릭터 인코딩을 UTF-8로 설정
 public class EncodingFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		System.out.println("EncodingFilter 실행 : request UTF-8 인코딩");
+		System.out.println("EncodingFilter/doFilter/debug : EncodingFilter 실행 : request UTF-8 인코딩");
 		request.setCharacterEncoding("UTF-8");
 		chain.doFilter(request, response);
 	}
