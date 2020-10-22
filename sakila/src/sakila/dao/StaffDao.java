@@ -17,6 +17,7 @@ public class StaffDao {
 			
 		ResultSet rs = stmt.executeQuery();
 		System.out.println("StaffDao/selectStaffByKey/debug : rs=" + rs); // 디버그
+		
 		if(rs.next()) {
 			returnStaff = new Staff();
 			returnStaff.setEmail(rs.getString("email"));

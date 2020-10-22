@@ -12,8 +12,8 @@ import javax.servlet.http.HttpSession;
 public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		System.out.println("IndexServlet/doGet/debug: loginStaffEmail=" + session.getAttribute("loginStaffEmail")); // 디버그
-		System.out.println("IndexServlet/doGet/debug: loginStaffUsername=" + session.getAttribute("loginStaffUsername")); // 디버그
+		System.out.println("IndexServlet/doGet/debug : /auth/IndexServlet 호출 성공"); // 디버그
+		request.getRequestDispatcher("/WEB");
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

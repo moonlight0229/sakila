@@ -8,7 +8,7 @@ import sakila.query.StatsQuery;
 import sakila.vo.Stats;
 
 public class StatsDao {
-	// paramStats의 날짜를 박아와 방문자가 있었는지 확인하는 메소드
+	// paramStats의 날짜를 받아와 방문자가 있었는지 확인하는 메소드
 	// 있으면 날짜와 방문자 수를 Stats vo로 반환, 없으면 null을 반환
 	public Stats selectDayStats(Connection conn, Stats paramStats) throws Exception {
 		Stats returnStats = null;

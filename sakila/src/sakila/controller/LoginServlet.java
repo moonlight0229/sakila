@@ -15,7 +15,7 @@ import sakila.service.StatsService;
 import sakila.vo.Stats;
 import sakila.vo.Staff;
 
-@WebServlet("/LoginServlet")
+@WebServlet({"/", "/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 	private StatsService statsService;
 	private StaffService staffService;
@@ -54,17 +54,16 @@ public class LoginServlet extends HttpServlet {
 		staff.setEmail(staffEmail);
 		staff.setPassword(staffPassword);
 		
-		System.out.println("LoginServlet/doPost/debug: 입력한 Email=" + staff.getEmail()); // 디버그
-		System.out.println("LoginServlet/doPost/debug: 입력한 Password=" + staff.getPassword()); // 디버그
+		System.out.println("LoginServlet/doPost/debug: staff.getEmail()=" + staff.getEmail()); // 디버그
+		System.out.println("LoginServlet/doPost/debug: staff.getPassword()=" + staff.getPassword()); // 디버그
 		
 		Staff returnStaff = staffService.getStaffByKey(staff);
 		
 		if(returnStaff != null) {
 			System.out.println("LoginServlet/doPost/debug: 로그인 성공"); // 디버그
 			HttpSession session = request.getSession();
-			session.setAttribute("loginStaffEmail", returnStaff.getEmail());
-			session.setAttribute("loginStaffUsername", returnStaff.getUsername());
-			response.sendRedirect(request.getContextPath() + "/IndexServlet"); // 로그인이 성공했으므로 IndexServlet로 이동
+			session.setAttribute("loginStaff", returnStaff);
+			response.sendRedirect(request.getContextPath() + "/auth/IndexServlet"); // 로그인이 성공했으므로 IndexServlet로 이동
 			return;
 		} else {
 			System.out.println("LoginServlet/doPost/debug: 로그인 실패"); // 디버그
