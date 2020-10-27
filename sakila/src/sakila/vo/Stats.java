@@ -3,6 +3,7 @@ package sakila.vo;
 public class Stats {
 	private String day;
 	private long cnt;
+	
 	public String getDay() {
 		return day;
 	}

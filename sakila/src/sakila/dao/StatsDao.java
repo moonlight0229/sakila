@@ -28,17 +28,17 @@ public class StatsDao {
 		return returnStats;
 	}
 	
-	// 총 방문자 수를 증가시키는 메소드
+	// 총 방문자 수를 조회하는 메소드
 	public Stats selectTotalStats(Connection conn) throws Exception {
 		Stats returnStats = null;
 		
 		PreparedStatement stmt = conn.prepareStatement(StatsQuery.SELECT_TOTAL_STATS);
-		System.out.println("StatsDao/selectTotalStats/debug : stmt=" + stmt); // 디버그
 		
-		ResultSet rs = stmt.executeQuery();		
+		ResultSet rs = stmt.executeQuery();
+		System.out.println("StatsDao/selectTotalStats/debug : rs=" + rs); // 디버그
 		if(rs.next()) {
 			returnStats = new Stats();
-			returnStats.setCnt(rs.getLong("SUM(cnt)"));
+			returnStats.setCnt(rs.getLong("sum(cnt)"));
 		}
 		System.out.println("StatsDao/selectTotalStats/debug : returnStats=" + returnStats); // 디버그
 		
