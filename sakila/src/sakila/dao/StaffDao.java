@@ -9,6 +9,7 @@ import sakila.vo.Staff;
 
 public class StaffDao {
 	public Staff selectStaffByKey(Connection conn, Staff staff) throws Exception {
+		System.out.println("StaffDao/selectStaffByKey/debug : StaffDao selectStaffByKey 실행"); // 디버그
 		Staff returnStaff = null;
 		
 		PreparedStatement stmt = conn.prepareStatement(StaffQuery.SELECT_STAFF_BY_KEY);

@@ -12,6 +12,7 @@ public class StatsListener implements HttpSessionListener {
 	public StatsListener() {}
 	// 세션 생성시 방문자 수를 1 증가시키는 메소드
     public void sessionCreated(HttpSessionEvent se)  {
+    	System.out.println("StatsListener/sessionCreated/debug : StatsListener sessionCreated 실행"); // 디버그
     	if(se.getSession().isNew()) { // 새로운 세션이 맞는지 확인
     		// 오늘 방문자 수를 1 증가 시키는 service 실행
     		statsService = new StatsService();

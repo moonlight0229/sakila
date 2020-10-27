@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/auth/LogoutServlet")
 public class LogoutServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("LogoutServlet/doGet/debug : LogoutServlet doGet 실행"); // 디버그
 		request.getSession().invalidate();
 		response.sendRedirect(request.getContextPath() + "/LoginServlet");
 	}

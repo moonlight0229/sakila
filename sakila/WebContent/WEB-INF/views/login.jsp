@@ -30,10 +30,10 @@
 	</div>
 	<form method="post" action="<%=request.getContextPath() %>/LoginServlet" id="loginForm">
 		<div>
-			<input type="text" name="staffEmail" placeholder="E-mail" id="email">
+			<input type="text" name="email" placeholder="E-mail" id="email">
 		</div>
 		<div>
-			<input type="password" name="staffPw" placeholder="Password" id="password">
+			<input type="password" name="password" placeholder="Password" id="password">
 		</div>
 		<div>
 			<button type="button" id="btn">Log-in</button>

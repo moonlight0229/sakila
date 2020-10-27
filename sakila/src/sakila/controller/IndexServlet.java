@@ -8,9 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/IndexServlet")
+@WebServlet("/auth/IndexServlet")
 public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("IndexServlet/doGet/debug : IndexServlet doGet 실행"); // 디버그
 		HttpSession session = request.getSession();
 		System.out.println("IndexServlet/doGet/debug : /auth/IndexServlet 호출 성공"); // 디버그
 		request.getRequestDispatcher("/WEB-INF/views/auth/index.jsp").forward(request, response);

@@ -15,7 +15,8 @@ import javax.servlet.http.HttpSession;
 @WebFilter("/auth/*") // auth로 시작하는 모든 요청을 받아와 session을 검사하여 로그인을 했는지 확인
 public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		System.out.println("LoginFilter/doFilter/debug : LoginFilter 실행 : session 검사");
+		System.out.println("LoginFilter/doFilter/debug : LoginFilter doFilter 실행"); // 디버그
+		System.out.println("LoginFilter/doFilter/debug : session 검사"); // 디버그
 		HttpSession session = ((HttpServletRequest)request).getSession();
 		if(session.getAttribute("loginStaff") == null) {
 			System.out.println("LoginFilter/doFilter/debug : 로그인 후 접근!");

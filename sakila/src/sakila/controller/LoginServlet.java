@@ -15,15 +15,16 @@ import sakila.service.StatsService;
 import sakila.vo.Stats;
 import sakila.vo.Staff;
 
-@WebServlet({"/", "/LoginServlet"})
+@WebServlet({"/LoginServlet"})
 public class LoginServlet extends HttpServlet {
 	private StatsService statsService;
 	private StaffService staffService;
 	
 	// 로그인 폼
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 로그인을 했다면 인덱스 페이지로 이동
+		System.out.println("LoginServlet/doGet/debug : LoginServlet doGet 실행"); // 디버그
 		HttpSession session = request.getSession();
+		// 로그인을 했다면 인덱스 페이지로 이동
 		if(session.getAttribute("loginStaff") != null) {
 			response.sendRedirect(request.getContextPath() + "/auth/IndexServlet");
 			return;
@@ -43,7 +44,8 @@ public class LoginServlet extends HttpServlet {
 	}
 	
 	// 로그인 액션
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("LoginServlet/doPost/debug : LoginServlet doPost 실행"); // 디버그
 		String staffEmail = request.getParameter("email");
 		String staffPassword = request.getParameter("password");
 		System.out.println("LoginServlet/doPost/debug: staffEmail=" + staffEmail); // 디버그
@@ -62,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 		if(returnStaff != null) {
 			System.out.println("LoginServlet/doPost/debug: 로그인 성공"); // 디버그
 			HttpSession session = request.getSession();
-			session.setAttribute("loginStaff", returnStaff);
+			session.setAttribute("loginStaff", returnStaff); // session에 성공한 로그인의 정보가 담긴 returnStaff를 저장
 			response.sendRedirect(request.getContextPath() + "/auth/IndexServlet"); // 로그인이 성공했으므로 IndexServlet로 이동
 			return;
 		} else {
