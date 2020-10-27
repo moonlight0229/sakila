@@ -13,9 +13,11 @@ public class DBUtil {
 		System.out.println("DBUtil/getConnection/debug : URL=" + URL); // 디버그
 		System.out.println("DBUtil/getConnection/debug : USER=" + USER); // 디버그
 		System.out.println("DBUtil/getConnection/debug : PASSWORD=" + PASSWORD); // 디버그
-
+		
+		// DB 접속
 		Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
-		conn.setAutoCommit(false);
+		conn.setAutoCommit(false); // AutoCommit 비활성화
+		
 		return conn;
 	}
 }

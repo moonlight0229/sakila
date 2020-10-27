@@ -6,19 +6,19 @@
 	<meta charset="UTF-8">
 	<title>login.jsp</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	
 	<!-- 로그인 유효성 검사 -->
 	<script>
-		$(document).ready(function() {
-			$("#btn").click(function() {
-				if ($("#email").val() == "") {
-					alert("이메일을 입력해주세요");
+		$(document).ready(function() { // 문서가 로드되면 이 스크립트를 제일 마지막에 실행
+			$("#btn").click(function() { // 버튼 클릭 시 폼 내용의 유효성 검사 수행
+				if ($("#email").val() == "") { // email이 공백인 경우
+					alert("이메일을 입력해주세요"); // 알림 출력
 					return;
-				} else if ($("#password").val() == "") {
-					alert("비밀번호를 입력해주세요");
+				} else if ($("#password").val() == "") { // password가 공백인 경우
+					alert("비밀번호를 입력해주세요"); // 알림 출력
 					return;
 				}
 				
-				alert("E-Mail : " + $("#email").val() + "/ Password : " + $("#password").val())
 				$("#loginForm").submit();
 			});
 		});

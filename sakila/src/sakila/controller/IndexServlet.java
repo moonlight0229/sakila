@@ -13,7 +13,7 @@ public class IndexServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		System.out.println("IndexServlet/doGet/debug : /auth/IndexServlet 호출 성공"); // 디버그
-		request.getRequestDispatcher("/WEB");
+		request.getRequestDispatcher("/WEB-INF/views/auth/index.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

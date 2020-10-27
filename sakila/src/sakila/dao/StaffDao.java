@@ -20,8 +20,12 @@ public class StaffDao {
 		
 		if(rs.next()) {
 			returnStaff = new Staff();
+			returnStaff.setStaffId(rs.getInt("staff_id"));
+			returnStaff.setStoreId(rs.getInt("store_id"));
 			returnStaff.setEmail(rs.getString("email"));
 			returnStaff.setPassword(rs.getString("username"));
+			System.out.println("StaffDao/selectStaffByKey/debug : staffId=" + rs.getInt("staff_id")); // 디버그
+			System.out.println("StaffDao/selectStaffByKey/debug : storeId=" + rs.getInt("store_id")); // 디버그
 			System.out.println("StaffDao/selectStaffByKey/debug : email=" + rs.getString("email")); // 디버그
 			System.out.println("StaffDao/selectStaffByKey/debug : username=" + rs.getString("username")); // 디버그
 		}
