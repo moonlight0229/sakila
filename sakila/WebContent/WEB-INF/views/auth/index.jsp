@@ -7,7 +7,13 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 <body>
-	<h3>index</h3>
-	
+	<section>
+		<div class="container">
+			<aside class="sidebar">
+				<jsp:include page="./menu.jsp"></jsp:include>
+			</aside>
+		</div>
+		<h3>index</h3>
+	</section>	
 </body>
 </html>

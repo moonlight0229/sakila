@@ -5,8 +5,12 @@
 <head>
 	<meta charset="UTF-8">
 	<title>login.jsp</title>
+	<!-- jQuery -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-	
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+	<!-- 아이콘 -->
+	<script src="https://use.fontawesome.com/releases/v5.2.0/js/all.js"></script>
 	<!-- 로그인 유효성 검사 -->
 	<script>
 		$(document).ready(function() { // 문서가 로드되면 이 스크립트를 제일 마지막에 실행
@@ -29,15 +33,28 @@
 		오늘 방문자 수 : ${todayStats.cnt} / 총 방문자 수 : ${totalStats}
 	</div>
 	<form method="post" action="<%=request.getContextPath() %>/LoginServlet" id="loginForm">
-		<div>
-			<input type="text" name="email" placeholder="E-mail" id="email">
-		</div>
-		<div>
-			<input type="password" name="password" placeholder="Password" id="password">
-		</div>
-		<div>
-			<button type="button" id="btn">Log-in</button>
-		</div>
+		<table class="table table-borderless" style="margin: auto; text-align: center; width: 50%;">
+			<tr>
+				<td style="color:gray">
+					<i class="fas fa-user-circle fa-10x"></i>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<input type="text" class="form-control" name="email" placeholder="E-mail" id="email">
+				</td>
+			</tr>		
+			<tr>
+				<td>
+					<input type="password" class="form-control" name="password" placeholder="Password" id="password">
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<button type="button" class="btn btn-primary" id="btn">로그인</button>
+				</td>
+			</tr>
+		</table>
 	</form>
 </body>	
 </html>
